@@ -10,9 +10,9 @@ const PORT = process.env.PORT || 3000; // Define a porta do servidor
 app.post('/github-webhook', (req, res) => {
   const eventData = req.body;
 
-  if (eventData.action === 'opened' && eventData.pull_request) {
-    // Implementar a criação da tarefa no Monday.com aqui
-    console.log('Pull request criado:', eventData.pull_request.title);
+  if (eventData.action === 'started' && eventData.repository) {
+    // Implemente a criação da tarefa no Monday.com aqui
+    console.log('Repositório marcado como favorito:', eventData.repository.full_name);
   }
 
   res.sendStatus(200);
