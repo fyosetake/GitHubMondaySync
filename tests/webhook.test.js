@@ -4,7 +4,7 @@ jest.mock('./monday', () => ({
     })
 }));
 
-const { startWebhookServer } = require('./webhook'); // Substitua pelo caminho correto
+const { startWebhookServer } = require('../src/webhook'); // Substitua pelo caminho correto
 
 describe('Webhook Server', () => {
     test('Servidor inciado corretamente', async () => {
@@ -42,7 +42,7 @@ describe('Webhook Server', () => {
         expect(mockResponse.sendStatus).toHaveBeenCalledWith(200);
         expect(mockApp.listen).toHaveBeenCalledWith(mockPort, expect.any(Function));
 
-        expect(require('./monday').createTaskMondayReviewPullRequest).toHaveBeenCalled();
+        expect(require('../src/monday').createTaskMondayReviewPullRequest).toHaveBeenCalled();
     });
 });
   

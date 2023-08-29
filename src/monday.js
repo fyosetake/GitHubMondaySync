@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { MONDAY_BOARD_ID, MONDAY_AUTH_TOKEN } = require('./config');
+const { MONDAY_BOARD_ID, MONDAY_AUTH_TOKEN } = require('../config/config');
 
 async function createTaskMondayReviewPullRequest(eventData) {
     const repository = eventData.repository.full_name;

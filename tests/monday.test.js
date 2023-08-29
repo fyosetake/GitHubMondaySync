@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { createTaskMondayReviewPullRequest } = require('./monday');
+const { createTaskMondayReviewPullRequest } = require('../src/monday');
 
 jest.mock('axios');
 
