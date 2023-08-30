@@ -28,7 +28,7 @@ async function createTaskMondayReviewPullRequest(eventData) {
 }
 
 async function updateTaskMondayReviewPullRequest(itemId, htmlUrlGitHubPr) {
-    let query = 'mutation {create_update (item_id: ' + itemId + ', body: "' + htmlUrlGitHubPr + '") { id }}';
+    let query = 'mutation {create_update (item_id: ' + itemId + ', body: "Solicito revisão deste Pull Request: ' + htmlUrlGitHubPr + '") { id }}';
 
     try {
         const response = await axios.post(
