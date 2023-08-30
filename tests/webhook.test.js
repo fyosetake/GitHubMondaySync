@@ -1,13 +1,12 @@
-jest.mock('./monday', () => ({
-    createTaskMondayReviewPullRequest: jest.fn(() => {
-        return Promise.resolve({ taskId: 'mocked-task-id', success: true });
-    })
+const { startWebhookServer } = require('../src/webhook');
+const { createAndHandleTasks } = require('../src/githubEventHandler');
+
+jest.mock('../src/githubEventHandler', () => ({
+    createAndHandleTasks: jest.fn()
 }));
 
-const { startWebhookServer } = require('../src/webhook'); // Substitua pelo caminho correto
-
 describe('Webhook Server', () => {
-    test('Servidor inciado corretamente', async () => {
+    test('Servidor inicia corretamente', async () => {
         const mockApp = {
             post: jest.fn(),
             listen: jest.fn()
@@ -29,6 +28,9 @@ describe('Webhook Server', () => {
                             full_name: 'fyosetake/teste'
                         }
                     }
+                },
+                pull_request: {
+                    html_url: 'http://localhost'
                 }
             }
         };
@@ -42,7 +44,6 @@ describe('Webhook Server', () => {
         expect(mockResponse.sendStatus).toHaveBeenCalledWith(200);
         expect(mockApp.listen).toHaveBeenCalledWith(mockPort, expect.any(Function));
 
-        expect(require('../src/monday').createTaskMondayReviewPullRequest).toHaveBeenCalled();
+        expect(createAndHandleTasks).toHaveBeenCalledWith(mockRequest.body);
     });
 });
-  
