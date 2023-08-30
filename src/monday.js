@@ -27,6 +27,29 @@ async function createTaskMondayReviewPullRequest(eventData) {
     }
 }
 
+async function updateTaskMondayReviewPullRequest(itemId, htmlUrlGitHubPr) {
+    let query = 'mutation {create_update (item_id: ' + itemId + ', body: "' + htmlUrlGitHubPr + '") { id }}';
+
+    try {
+        const response = await axios.post(
+        "https://api.monday.com/v2",
+            {
+                query: query
+            },
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': MONDAY_AUTH_TOKEN
+                }
+            }
+        );
+
+        return response.data;
+    } catch (error) {
+        throw new Error('Erro ao inserir update na tarefa no Monday.com: ' + error.message);
+    }
+}
+
 module.exports = {
-    createTaskMondayReviewPullRequest
+    createTaskMondayReviewPullRequest, updateTaskMondayReviewPullRequest
 };
