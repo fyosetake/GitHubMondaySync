@@ -1,4 +1,6 @@
-const { createTaskMondayReviewPullRequest, updateTaskMondayReviewPullRequest } = require('./apiMondayHandler');
+const { createTaskMondayReviewPullRequest, updateTaskMondayReviewPullRequest, updateTaskMondayColumns } = require('./apiMondayHandler');
+const axios = require('axios');
+const updates = require('../config/configDataTask.json');
 
 async function createAndHandleTasks(eventData) {
     let mondayResponse;
@@ -20,6 +22,11 @@ async function createAndHandleTasks(eventData) {
         try {
             const taskUpdate = await updateTaskMondayReviewPullRequest(itemId, htmlUrlGitHubPr);
             console.log('Update criado no Monday.com:', taskUpdate);
+
+            updates.forEach(async (update) => {
+                const updateColumns = await updateTaskMondayColumns(itemId, update.columnId, update.newValue);
+                console.log('Update realizado no Monday.com', updateColumns);
+            });
         } catch (error) {
             console.error('Erro ao conectar com o Monday.com para inserir update:', error.message);
             throw error;

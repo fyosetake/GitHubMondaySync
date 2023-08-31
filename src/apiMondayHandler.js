@@ -9,9 +9,9 @@ async function createTaskMondayReviewPullRequest(eventData) {
 
     try {
         const response = await axios.post(
-        "https://api.monday.com/v2", 
-            { 
-                query: query 
+            "https://api.monday.com/v2",
+            {
+                query: query
             },
             {
                 headers: {
@@ -32,7 +32,7 @@ async function updateTaskMondayReviewPullRequest(itemId, htmlUrlGitHubPr) {
 
     try {
         const response = await axios.post(
-        "https://api.monday.com/v2",
+            "https://api.monday.com/v2",
             {
                 query: query
             },
@@ -50,6 +50,29 @@ async function updateTaskMondayReviewPullRequest(itemId, htmlUrlGitHubPr) {
     }
 }
 
+async function updateTaskMondayColumns(itemId, columnId, newValue) {
+    let query = 'mutation {change_simple_column_value(board_id: ' + MONDAY_BOARD_ID + ', item_id: ' + itemId + ', column_id: "' + columnId + '", value: "' + newValue + '") {id}}';
+
+    try {
+        const response = await axios.post(
+            'https://api.monday.com/v2',
+            {
+                query: query
+            },
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: MONDAY_AUTH_TOKEN,
+                },
+            }
+        );
+
+        return response.data;
+    } catch (error) {
+        throw new Error('Erro ao atualizar tarefa:', error.message);
+    }
+}
+
 module.exports = {
-    createTaskMondayReviewPullRequest, updateTaskMondayReviewPullRequest
+    createTaskMondayReviewPullRequest, updateTaskMondayReviewPullRequest, updateTaskMondayColumns
 };
