@@ -1,0 +1,5 @@
+[
+    { "columnId": "project_status", "newValue": "Nova tarefa" },
+    { "columnId": "priority_1", "newValue": "Baixa" },
+    { "columnId": "texto", "newValue": "Backend" }
+]
