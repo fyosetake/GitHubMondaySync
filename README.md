@@ -30,7 +30,7 @@ Configuração no GitHub:
 
 - Anote o ID do quadro do Monday.com onde deseja criar tarefas.
 
-- No diretório config, edite o arquivo config.js com as informações necessárias:
+- No diretório config, edite o arquivo ```config.js``` com as informações necessárias:
 
 ~~~Javascript
 module.exports = {
@@ -39,7 +39,7 @@ module.exports = {
 };
 ~~~
 
-  No mesmo diretório, edite o arquivo configDataTask para personalizar as informações das tarefas que serão criadas, exemplo:
+  No mesmo diretório, edite o arquivo ```configDataTask.json``` para personalizar as informações das tarefas que serão criadas, exemplo:
 
 ~~~JSON
 [
@@ -49,13 +49,20 @@ module.exports = {
 ]
 ~~~
 
+### Comando curl
+
+Você pode usar o seguinte comando curl para fazer chamadas à API do Monday.com e obter os valores de ```columnId``` para configuração da aplicação:
+
+~~~Terminal
+curl -X POST "https://api.monday.com/v2" \
+-H "Content-Type: application/json" \
+-H "Authorization: YOUR_API_TOKEN" \
+-d '{"query":"{boards(ids: YOUR_BOARD_ID) {columns {id title}}}"}'
+~~~
+
 ### Uso
 
 Após configurar a integração, sempre que um pull request for aberto no GitHub, uma tarefa será automaticamente criada no Monday.com com as informações configuradas.
-
-### Personalização
-
-Você pode personalizar as informações das tarefas editando o arquivo configDataTask de acordo com suas necessidades.
 
 ### Suporte
 
