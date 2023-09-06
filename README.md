@@ -32,18 +32,18 @@ Configuração no GitHub:
 
 - No diretório config, edite o arquivo config.js com as informações necessárias:
 
-```module.exports = {
-MONDAY_BOARD_ID: 'ID_DO_QUADRO_NO_MONDAY',
-MONDAY_AUTH_TOKEN: 'SEU_TOKEN_DO_MONDAY'```
-};```
+    module.exports = {
+        MONDAY_BOARD_ID: 'ID_DO_QUADRO_NO_MONDAY',
+        MONDAY_AUTH_TOKEN: 'SEU_TOKEN_DO_MONDAY'```
+    };
 
   No mesmo diretório, edite o arquivo configDataTask para personalizar as informações das tarefas que serão criadas, exemplo:
 
-```[
-{ "columnId": "project_status", "newValue": "Nova tarefa" },
-{ "columnId": "priority_1", "newValue": "Baixa" },
-{ "columnId": "texto", "newValue": "Backend" }
-]```
+    [
+        { "columnId": "project_status", "newValue": "Nova tarefa" },
+        { "columnId": "priority_1", "newValue": "Baixa" },
+        { "columnId": "texto", "newValue": "Backend" }
+    ]
 
 ### Uso
 
@@ -61,6 +61,6 @@ Se você tiver algum problema ou precisar de suporte, sinta-se à vontade para a
 
 Contribuições são bem-vindas! Se você deseja melhorar este aplicativo, sinta-se à vontade para enviar um pull request.
 
-###Licença
+### Licença
 
 Este projeto está licenciado sob a Licença MIT - consulte o arquivo LICENSE para obter detalhes.
