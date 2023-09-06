@@ -34,7 +34,7 @@ Configuração no GitHub:
 
 ```module.exports = {
 MONDAY_BOARD_ID: 'ID_DO_QUADRO_NO_MONDAY',
-MONDAY_AUTH_TOKEN: 'SEU_TOKEN_DO_MONDAY'```
+MONDAY_AUTH_TOKEN: 'SEU_TOKEN_DO_MONDAY'
 };```
 
   No mesmo diretório, edite o arquivo configDataTask para personalizar as informações das tarefas que serão criadas, exemplo:
