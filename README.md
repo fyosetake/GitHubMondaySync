@@ -1,6 +1,6 @@
 # GitHubMondaySync
 
-Este aplicativo integra o GitHub com o Monday.com, permitindo que tarefas sejam automaticamente criadas no Monday.com sempre que um pull request for aberto no GitHub.
+Este aplicativo integra o GitHub com o Monday.com, permitindo que tarefas sejam automaticamente criadas no Monday.com sempre que um pull request for aberto no GitHub. A aplicação está desenvolvida em Node.js.
 
 ### Configuração
 
@@ -62,7 +62,13 @@ curl -X POST "https://api.monday.com/v2" \
 
 ### Uso
 
-Após configurar a integração, sempre que um pull request for aberto no GitHub, uma tarefa será automaticamente criada no Monday.com com as informações configuradas.
+Após configurar a integração, rode a aplicação. Para isso, basta utilizar o seguinte comando:
+
+~~~Node
+node index.js
+~~~
+
+Sempre que um pull request for aberto no GitHub, uma tarefa será automaticamente criada no Monday.com com as informações configuradas.
 
 ### Suporte
 
