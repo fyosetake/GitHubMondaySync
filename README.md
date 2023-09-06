@@ -32,7 +32,7 @@ Configuração no GitHub:
 
 - No diretório config, edite o arquivo config.js com as informações necessárias:
 
-~~~JSON
+~~~Javascript
 module.exports = {
     MONDAY_BOARD_ID: 'ID_DO_QUADRO_NO_MONDAY',
     MONDAY_AUTH_TOKEN: 'SEU_TOKEN_DO_MONDAY'
