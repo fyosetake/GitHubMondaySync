@@ -1,4 +1,4 @@
-###### GitHubMondaySync
+# GitHubMondaySync
 
 Este aplicativo integra o GitHub com o Monday.com, permitindo que tarefas sejam automaticamente criadas no Monday.com sempre que um pull request for aberto no GitHub.
 
