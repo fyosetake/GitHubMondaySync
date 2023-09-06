@@ -4,7 +4,7 @@ const updates = require('../config/configDataTask.json');
 
 async function createAndHandleTasks(eventData) {
     let mondayResponse;
-    let htmlUrlGitHubPr = eventData.repository.html_url;
+    let htmlUrlGitHubPr = eventData.pull_request.html_url;
 
     if (eventData.action === 'opened' && eventData.repository) {
         try {
