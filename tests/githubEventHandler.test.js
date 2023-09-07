@@ -1,9 +1,10 @@
 const { createAndHandleTasks } = require('../src/githubEventHandler');
-const { createTaskMondayReviewPullRequest, updateTaskMondayReviewPullRequest } = require('../src/apiMondayHandler');
+const { createTaskMondayReviewPullRequest, updateTaskMondayReviewPullRequest, updateTaskMondayColumns } = require('../src/apiMondayHandler');
 
 jest.mock('../src/apiMondayHandler', () => ({
     createTaskMondayReviewPullRequest: jest.fn(),
-    updateTaskMondayReviewPullRequest: jest.fn()
+    updateTaskMondayReviewPullRequest: jest.fn(),
+    updateTaskMondayColumns: jest.fn()
 }));
 
 describe('createAndHandleTasks', () => {
@@ -12,6 +13,9 @@ describe('createAndHandleTasks', () => {
             action: 'opened',
             repository: {
                 html_url: 'http://github.com/repo'
+            },
+            pull_request: {
+                html_url: 'http://github.com/pr'
             }
         };
 
@@ -23,12 +27,21 @@ describe('createAndHandleTasks', () => {
             }
         };
 
+        const originalUpdateTaskMondayColumns = require('../src/apiMondayHandler').updateTaskMondayColumns;
+        originalUpdateTaskMondayColumns.mockResolvedValue({});
+
         createTaskMondayReviewPullRequest.mockResolvedValue(createTaskResponse);
         updateTaskMondayReviewPullRequest.mockResolvedValue({});
+        updateTaskMondayColumns.mockReturnValue({});
 
         await createAndHandleTasks(eventData);
 
         expect(createTaskMondayReviewPullRequest).toHaveBeenCalledWith(eventData);
-        expect(updateTaskMondayReviewPullRequest).toHaveBeenCalledWith(createTaskResponse.data.create_item.id, eventData.repository.html_url);
+        expect(updateTaskMondayReviewPullRequest).toHaveBeenCalledWith(createTaskResponse.data.create_item.id, eventData.pull_request.html_url);
+        expect(originalUpdateTaskMondayColumns).toHaveBeenCalledWith(
+            createTaskResponse.data.create_item.id,
+            expect.anything(),
+            expect.anything()
+        );
     });
 });
