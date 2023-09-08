@@ -11,8 +11,7 @@ async function createAndHandleTasks(eventData) {
             mondayResponse = await createTaskMondayReviewPullRequest(eventData);
             console.log('Tarefa criada no Monday.com:', mondayResponse);
         } catch (error) {
-            console.error('Erro ao conectar com o Monday.com para criar tarefa:', error.message);
-            throw error;
+            throw new Error('Erro ao conectar com o Monday.com para criar tarefa:', error.message);
         }
     }
 
@@ -28,8 +27,7 @@ async function createAndHandleTasks(eventData) {
                 console.log('Update realizado no Monday.com', updateColumns);
             });
         } catch (error) {
-            console.error('Erro ao conectar com o Monday.com para inserir update:', error.message);
-            throw error;
+            throw new Error('Erro ao conectar com o Monday.com para inserir update:', error.message);
         }
     }
 }
