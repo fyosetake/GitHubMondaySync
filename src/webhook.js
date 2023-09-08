@@ -7,7 +7,7 @@ function startWebhookServer(app, port) {
         try {
             await createAndHandleTasks(eventData);
         } catch (error) {
-            console.error('Erro durante o processamento:', error.message);
+            throw new Error('Erro durante o processamento:', error.message);
         }
 
         res.sendStatus(200);
